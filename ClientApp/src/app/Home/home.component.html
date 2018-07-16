@@ -1,0 +1,50 @@
+
+<form>
+    
+        <!-- <nav class="navbar navbar-default">
+                <ul class="nav navbar-nav pull-right">
+                    <li>
+                        <a routerLink='createEm' class="nav navbar-nav">Create</a>
+                        <a routerLink='updateEm' class="nav navbar-nav">Update</a>
+                    </li>
+          
+                </ul>
+          
+            </nav> -->
+    <input type="button" class="btn btn-success" value="Create" routerLink='createEm'>
+    <input type="button" class="btn btn-primary" value="Update" routerLink='updateEm'>
+    <input type="button" class="btn btn-danger" value="Delete" routerLink='updateEm'>
+  <router-outlet></router-outlet>
+  <!-- <div>
+        <h2>
+        Welcome to Home page.
+        <table>  
+        
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Salary</th>
+                    <th>DOB</th>
+                </tr>
+            </thead>
+        
+            <tbody>
+                <ng-container *ngFor="let employee of employees;">
+                    <tr>
+                        <td> {{ employee.code}}</td>
+                        <td> {{ employee.name}}</td>
+                        <td> {{ employee.gender}}</td>
+                        <td> {{ employee.annualSalary}}</td>
+                        <td> {{ employee.dateOfBirth}}</td>
+        
+                    </tr>
+        
+                </ng-container>
+               
+            </tbody>
+        </table>
+        </h2>
+        </div> -->
+</form>
