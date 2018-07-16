@@ -1,26 +1,26 @@
 <div *ngIf='showHideLogin' class="container">
-  <nav class="navbar navbar-default">
-      <ul class="nav navbar-nav pull-right">
-          <li>
-              <a routerLink='login' class="nav navbar-nav">Login</a>
-              <a routerLink='signup' class="nav navbar-nav">Registration</a>
-          </li>
+    <nav class="navbar navbar-default">
+        <ul class="nav navbar-nav pull-right">
+            <li>
+                <a routerLink='login' class="nav navbar-nav">Login</a>
+                <a routerLink='signup' class="nav navbar-nav">Registration</a>
+            </li>
 
-      </ul>
+        </ul>
 
-  </nav>
-  <div></div>
-  <router-outlet></router-outlet>
+    </nav>
+    <div></div>
+    <router-outlet></router-outlet>
 </div>
+
 <div *ngIf='showHideHome' class="container">
-        <nav class="navbar navbar-default">
-            <ul class="nav navbar-nav pull-right">
-                <li>
-                    <a routerLink='home' class="nav navbar-nav">Home</a>
-                </li>
-            </ul>
-      
-        </nav>
-        <router-outlet></router-outlet>
+    <nav class="navbar navbar-default">
+        <ul class="nav navbar-nav pull-right">
+            <li>
+                <a routerLink='home' class="nav navbar-nav">Home</a>
+            </li>
+        </ul>
+
+    </nav>
+    <router-outlet></router-outlet>
 </div>
-      
