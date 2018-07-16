@@ -15,6 +15,7 @@ import { UpdateEmComponent } from './User/UpdateEmp/updateEm.component';
 import { EmployeeService } from './Service/empService';
 
 
+
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: RegistrationComponent },
