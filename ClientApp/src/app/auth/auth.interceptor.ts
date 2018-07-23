@@ -5,9 +5,11 @@ import 'rxjs/add/operator/do';
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 
+
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
+    tokenVal:object
     constructor(private router: Router) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -16,8 +18,12 @@ export class AuthInterceptor implements HttpInterceptor {
 
         if (localStorage.getItem('userToken') != null) {
             const clonedreq = req.clone({
-                headers: req.headers.set("Authorization", "Bearer " + localStorage.getItem('userToken'))
+                headers: req.headers.set("Authorization", 
+                "Bearer " + localStorage.getItem('userToken'))
+             
+                
             });
+            this.tokenVal=clonedreq;
             return next.handle(clonedreq)
                 .do(
                 succ => { },

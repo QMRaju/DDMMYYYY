@@ -4,6 +4,8 @@
             <li>
                 <a routerLink='login' class="nav navbar-nav">Login</a>
                 <a routerLink='signup' class="nav navbar-nav">Registration</a>
+                <a routerLink='changepassword' class="nav navbar-nav">ChangePassword</a>
+                <a routerLink='test' class="nav navbar-nav">Test</a>
             </li>
 
         </ul>
@@ -23,4 +25,34 @@
 
     </nav>
     <router-outlet></router-outlet>
+</div>
+
+<div *ngIf='showHideDialog'  class="container" tabindex="-1" role="dialog">
+    <nav class="navbar navbar-default">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Your request has save sucessfully.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (Click)="OkSet()" >Ok</button>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+    <router-outlet></router-outlet>
+    </div>
+
+
+<!-- // Not working Manish -->
+<div *ngIf='_showPopup' class="container" class="modal" tabindex="-1" role="dialog">
+   
+  
 </div>
