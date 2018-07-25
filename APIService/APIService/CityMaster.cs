@@ -12,12 +12,12 @@ namespace APIService
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class CityMaster
     {
-        public string code { get; set; }
-        public string name { get; set; }
-        public string gender { get; set; }
-        public Nullable<decimal> annualSalary { get; set; }
-        public string dateOfBirth { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> StateID { get; set; }
+    
+        public virtual StateMaster StateMaster { get; set; }
     }
 }

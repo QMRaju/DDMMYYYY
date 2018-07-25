@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit{
         console.log('start login');
         
         this._loginService.login(userName,password).subscribe((data : any)=>{
-        localStorage.setItem('userToken',data.access_token);
-        console.log(localStorage.getItem('userToken'));
+      //  localStorage.setItem('userToken',data.access_token);
+        //console.log(localStorage.getItem('userToken'));
         this._appComponent.showHideHome=true;
         this._appComponent.showHideLogin=false; 
         this._router.navigate(['../home']); 

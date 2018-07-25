@@ -56,17 +56,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Employees">
-      <EntityTypeMapping TypeName="DemoModel.Employee">
-        <MappingFragment StoreEntitySet="Employees">
-          <ScalarProperty Name="code" ColumnName="code" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="gender" ColumnName="gender" />
-          <ScalarProperty Name="annualSalary" ColumnName="annualSalary" />
-          <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="DemoModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetRoles">
         <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -75,14 +64,43 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="Personels">
-      <EntityTypeMapping TypeName="DemoModel.Personel">
-        <MappingFragment StoreEntitySet="Personel">
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="Department" ColumnName="Department" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
+    <EntitySetMapping Name="WebDealarDetails">
+      <EntityTypeMapping TypeName="DemoModel.WebDealarDetail">
+        <MappingFragment StoreEntitySet="WebDealarDetails">
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="DelarName" ColumnName="DelarName" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+          <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CityMasters">
+      <EntityTypeMapping TypeName="DemoModel.CityMaster">
+        <MappingFragment StoreEntitySet="CityMaster">
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="PersonelID" ColumnName="PersonelID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CountryMasters">
+      <EntityTypeMapping TypeName="DemoModel.CountryMaster">
+        <MappingFragment StoreEntitySet="CountryMaster">
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StateMasters">
+      <EntityTypeMapping TypeName="DemoModel.StateMaster">
+        <MappingFragment StoreEntitySet="StateMaster">
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

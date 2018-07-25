@@ -13,6 +13,13 @@ namespace APIService
     {
         public static void Register(HttpConfiguration config)
         {
+            //add by Raju 
+            var json = config.Formatters.JsonFormatter;
+            json.SerializerSettings.PreserveReferencesHandling 
+                = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
+
             //New Code
             //Enable CORS
             var enableCorsAttribute = new EnableCorsAttribute("*", "Origin, Content-Type, Accept", "GET, PUT, POST, DELETE, OPTIONS");

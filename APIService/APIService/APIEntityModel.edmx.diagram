@@ -10,11 +10,14 @@
         <EntityTypeShape EntityType="DemoModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DemoModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DemoModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DemoModel.Employee" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="DemoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="DemoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="DemoModel.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DemoModel.Personel" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="DemoModel.WebDealarDetail" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DemoModel.CityMaster" Width="1.5" PointX="9.625" PointY="4.875" />
+        <EntityTypeShape EntityType="DemoModel.CountryMaster" Width="1.5" PointX="7.375" PointY="7.75" />
+        <EntityTypeShape EntityType="DemoModel.StateMaster" Width="1.5" PointX="7.375" PointY="4.875" />
+        <AssociationConnector Association="DemoModel.FK_CityMaster_StateMaster" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

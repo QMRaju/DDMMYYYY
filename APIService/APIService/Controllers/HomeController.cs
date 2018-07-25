@@ -22,12 +22,12 @@ namespace APIService.Controllers
 
         }
 
-        public IEnumerable<Employee> Get()
-        {
-            using (DemoEntities entities=new DemoEntities())
-            {
-                return entities.Employees.ToList();
-            }
-        }
+        //public IEnumerable<Employee> Get()
+        //{
+        //    using (DemoEntities entities=new DemoEntities())
+        //    {
+        //        return entities.Employees.ToList();
+        //    }
+        //}
     }
 }

@@ -4,8 +4,11 @@ import { Observable } from 'rxjs/Observable';
 import {LoginService} from '../Service/login.service';
 
 @Injectable()
+
 export class AuthGuard implements CanActivate {
+
   constructor(private router : Router){}
+  
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):  boolean {

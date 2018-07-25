@@ -10,6 +10,7 @@ import { ICredential } from '../Model/credential.model';
 import { IEmployee } from '../Model/employee.model';
 import { Http, Response } from '@angular/http';
 import {AuthInterceptor} from '../auth/auth.interceptor';
+import { ICountry } from '../Model/gas.model';
 
 
 
@@ -21,7 +22,7 @@ export class LoginService {
     credential: Observable<ICredential[]>;
     changepassword : Observable<IChangePassword[]>;
 
-    constructor(private _http: HttpClient , private _auth: AuthInterceptor) {
+    constructor(private _http: HttpClient  ) {
 
     }
     getEmployees(): any {
@@ -29,10 +30,17 @@ export class LoginService {
         
     //   var headers= "Authorization", 
     //   "Bearer " + localStorage.getItem('userToken')
-      console.log(this._auth.tokenVal);
-        return this._http.get("http://localhost:44968/api/Employees")
-        //.map((response: Response) => <IEmployee[]>response.json())
+     
+        return this._http.get("http://localhost:44968/api/delear/countrylist")
+        .map((response: Response) => <IEmployee[]>response.json())
+        
     }
+    getCountryListMtd(): any {
+            return this._http.get("http://localhost:44968/api/Employees")
+            .map((response: Response) => <ICountry[]>response.json())
+            console.log("API fetch done for country ilist"); 
+        }
+
 
     login(userName, password) {
         var data = "username=" + userName + "&password=" + password + "&grant_type=password";

@@ -1,0 +1,51 @@
+<form>
+
+
+
+    <div>
+        <label>Select Country Name : </label>
+        <select [formControl]="sampleform.controls['Name']">
+            <option value="0">--Select--</option>
+            <option *ngFor="let Con of country" value={{Con.Name}}>
+                {{Con.Name}}
+            </option>
+        </select>
+    </div>
+
+</form>
+
+<!-- <form>
+    
+  <div>
+        <h2>
+        Welcome to Home page.
+        <table>  
+        
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Salary</th>
+                    <th>DOB</th>
+                </tr>
+            </thead>
+        
+            <tbody>
+                <ng-container *ngFor="let employee of employees;">
+                    <tr>
+                        <td> {{ employee.code}}</td>
+                        <td> {{ employee.name}}</td>
+                        <td> {{ employee.gender}}</td>
+                        <td> {{ employee.annualSalary}}</td>
+                        <td> {{ employee.dateOfBirth}}</td>
+        
+                    </tr>
+        
+                </ng-container>
+               
+            </tbody>
+        </table>
+        </h2>
+        </div>
+</form> -->

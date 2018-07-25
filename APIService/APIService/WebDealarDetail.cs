@@ -12,12 +12,14 @@ namespace APIService
     using System;
     using System.Collections.Generic;
     
-    public partial class Personel
+    public partial class WebDealarDetail
     {
-        public int PersonelID { get; set; }
-        public string Name { get; set; }
-        public string Gender { get; set; }
-        public string Department { get; set; }
-        public string City { get; set; }
+        public int RecordId { get; set; }
+        public string CountryName { get; set; }
+        public string StateName { get; set; }
+        public string CityName { get; set; }
+        public string DelarName { get; set; }
+        public Nullable<int> Enabled { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
     }
 }

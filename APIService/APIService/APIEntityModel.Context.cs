@@ -30,7 +30,9 @@ namespace APIService
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<Personel> Personels { get; set; }
+        public virtual DbSet<WebDealarDetail> WebDealarDetails { get; set; }
+        public virtual DbSet<CityMaster> CityMasters { get; set; }
+        public virtual DbSet<CountryMaster> CountryMasters { get; set; }
+        public virtual DbSet<StateMaster> StateMasters { get; set; }
     }
 }

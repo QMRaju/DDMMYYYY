@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -66,28 +66,54 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <EntityType Name="Employees">
+        <EntityType Name="CityMaster">
           <Key>
-            <PropertyRef Name="code" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="code" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="50" />
-          <Property Name="gender" Type="varchar" MaxLength="50" />
-          <Property Name="annualSalary" Type="decimal" Precision="18" Scale="3" />
-          <Property Name="dateOfBirth" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="StateID" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Demo.dbo.Personel' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Personel">
+        <EntityType Name="CountryMaster">
           <Key>
-            <PropertyRef Name="PersonelID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="PersonelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="150" />
-          <Property Name="Gender" Type="varchar" MaxLength="20" />
-          <Property Name="Department" Type="varchar" MaxLength="150" />
-          <Property Name="City" Type="varchar" MaxLength="150" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="5" />
         </EntityType>
+        <EntityType Name="StateMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryID" Type="int" />
+        </EntityType>
+        <EntityType Name="WebDealarDetails">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="200" />
+          <Property Name="StateName" Type="varchar" MaxLength="200" />
+          <Property Name="CityName" Type="varchar" MaxLength="200" />
+          <Property Name="DelarName" Type="varchar" MaxLength="200" />
+          <Property Name="Enabled" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_CityMaster_StateMaster">
+          <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="0..1" />
+          <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CityMaster">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -151,16 +177,14 @@ warning 6002: The table/view 'Demo.dbo.Personel' does not have a primary key def
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Personel" EntityType="Self.Personel" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Personel].[PersonelID] AS [PersonelID], 
-    [Personel].[Name] AS [Name], 
-    [Personel].[Gender] AS [Gender], 
-    [Personel].[Department] AS [Department], 
-    [Personel].[City] AS [City]
-    FROM [dbo].[Personel] AS [Personel]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="CityMaster" EntityType="Self.CityMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CountryMaster" EntityType="Self.CountryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StateMaster" EntityType="Self.StateMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebDealarDetails" EntityType="Self.WebDealarDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CityMaster_StateMaster" Association="Self.FK_CityMaster_StateMaster">
+            <End Role="StateMaster" EntitySet="StateMaster" />
+            <End Role="CityMaster" EntitySet="CityMaster" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -241,16 +265,6 @@ warning 6002: The table/view 'Demo.dbo.Personel' does not have a primary key def
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
-        <EntityType Name="Employee">
-          <Key>
-            <PropertyRef Name="code" />
-          </Key>
-          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="annualSalary" Type="Decimal" Precision="18" Scale="3" />
-          <Property Name="dateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -289,7 +303,6 @@ warning 6002: The table/view 'Demo.dbo.Personel' does not have a primary key def
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
-          <EntitySet Name="Employees" EntityType="Self.Employee" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -302,18 +315,65 @@ warning 6002: The table/view 'Demo.dbo.Personel' does not have a primary key def
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="Personels" EntityType="DemoModel.Personel" />
+          <EntitySet Name="WebDealarDetails" EntityType="DemoModel.WebDealarDetail" />
+          <EntitySet Name="CityMasters" EntityType="DemoModel.CityMaster" />
+          <EntitySet Name="CountryMasters" EntityType="DemoModel.CountryMaster" />
+          <EntitySet Name="StateMasters" EntityType="DemoModel.StateMaster" />
+          <AssociationSet Name="FK_CityMaster_StateMaster" Association="DemoModel.FK_CityMaster_StateMaster">
+            <End Role="StateMaster" EntitySet="StateMasters" />
+            <End Role="CityMaster" EntitySet="CityMasters" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Personel">
+        <EntityType Name="WebDealarDetail">
           <Key>
-            <PropertyRef Name="PersonelID" />
+            <PropertyRef Name="RecordId" />
           </Key>
-          <Property Name="PersonelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Department" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="StateName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CityName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DelarName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Enabled" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="CityMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StateID" Type="Int32" />
+          <NavigationProperty Name="StateMaster" Relationship="DemoModel.FK_CityMaster_StateMaster" FromRole="CityMaster" ToRole="StateMaster" />
+        </EntityType>
+        <EntityType Name="CountryMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StateMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryID" Type="Int32" />
+          <NavigationProperty Name="CityMasters" Relationship="DemoModel.FK_CityMaster_StateMaster" FromRole="StateMaster" ToRole="CityMaster" />
+        </EntityType>
+        <Association Name="FK_CityMaster_StateMaster">
+          <End Type="DemoModel.StateMaster" Role="StateMaster" Multiplicity="0..1" />
+          <End Type="DemoModel.CityMaster" Role="CityMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CityMaster">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -375,17 +435,6 @@ warning 6002: The table/view 'Demo.dbo.Personel' does not have a primary key def
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="DemoModel.Employee">
-              <MappingFragment StoreEntitySet="Employees">
-                <ScalarProperty Name="code" ColumnName="code" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="annualSalary" ColumnName="annualSalary" />
-                <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="AspNetUserRoles" TypeName="DemoModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -394,14 +443,43 @@ warning 6002: The table/view 'Demo.dbo.Personel' does not have a primary key def
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Personels">
-            <EntityTypeMapping TypeName="DemoModel.Personel">
-              <MappingFragment StoreEntitySet="Personel">
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Department" ColumnName="Department" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <EntitySetMapping Name="WebDealarDetails">
+            <EntityTypeMapping TypeName="DemoModel.WebDealarDetail">
+              <MappingFragment StoreEntitySet="WebDealarDetails">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="DelarName" ColumnName="DelarName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CityMasters">
+            <EntityTypeMapping TypeName="DemoModel.CityMaster">
+              <MappingFragment StoreEntitySet="CityMaster">
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="PersonelID" ColumnName="PersonelID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountryMasters">
+            <EntityTypeMapping TypeName="DemoModel.CountryMaster">
+              <MappingFragment StoreEntitySet="CountryMaster">
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateMasters">
+            <EntityTypeMapping TypeName="DemoModel.StateMaster">
+              <MappingFragment StoreEntitySet="StateMaster">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
