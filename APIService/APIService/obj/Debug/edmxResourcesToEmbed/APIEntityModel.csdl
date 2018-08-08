@@ -117,18 +117,24 @@
       <End Role="StateMaster" EntitySet="StateMasters" />
       <End Role="CityMaster" EntitySet="CityMasters" />
     </AssociationSet>
+    <EntitySet Name="WebConsumerDetails" EntityType="DemoModel.WebConsumerDetail" />
+    <EntitySet Name="WebConsumerProfiles" EntityType="DemoModel.WebConsumerProfile" />
   </EntityContainer>
   <EntityType Name="WebDealarDetail">
     <Key>
       <PropertyRef Name="RecordId" />
     </Key>
     <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CountryName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="StateName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="CityName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="DelarName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CountryName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="StateName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CityName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="DelarName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="Enabled" Type="Int32" />
-    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="CountryID" Type="Int32" />
+    <Property Name="CountryCode" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="StateID" Type="Int32" />
+    <Property Name="CityId" Type="Int32" />
   </EntityType>
   <EntityType Name="CityMaster">
     <Key>
@@ -168,4 +174,47 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="WebConsumerDetail">
+    <Key>
+      <PropertyRef Name="ConsumerID" />
+    </Key>
+    <Property Name="ConsumerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ConsumerName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNumber" Type="Int64" />
+    <Property Name="Location" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Enabled" Type="Int32" />
+    <Property Name="LastOrder" Type="DateTime" Precision="3" />
+    <Property Name="DealerId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="WebConsumerProfile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNo" Type="Int64" />
+    <Property Name="AlternativePhoneNo" Type="Int64" />
+    <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="PINCode" Type="Int64" />
+    <Property Name="LongStayYear" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="LongStayMonth" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="IsPermanent" Type="Int32" />
+    <Property Name="AdharNo" Type="Int64" />
+    <Property Name="Occupation" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="EmployementNo" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SalaryRange" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="SavetoDraff" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Enabled" Type="Int32" />
+  </EntityType>
 </Schema>

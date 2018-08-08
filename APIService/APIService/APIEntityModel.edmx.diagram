@@ -18,6 +18,8 @@
         <EntityTypeShape EntityType="DemoModel.CountryMaster" Width="1.5" PointX="7.375" PointY="7.75" />
         <EntityTypeShape EntityType="DemoModel.StateMaster" Width="1.5" PointX="7.375" PointY="4.875" />
         <AssociationConnector Association="DemoModel.FK_CityMaster_StateMaster" />
+        <EntityTypeShape EntityType="DemoModel.WebConsumerDetail" Width="1.5" PointX="4" PointY="7.125" />
+        <EntityTypeShape EntityType="DemoModel.WebConsumerProfile" Width="1.5" PointX="0.75" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

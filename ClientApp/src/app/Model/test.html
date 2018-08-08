@@ -1,0 +1,324 @@
+ <h1>
+  {{title}} <i class="fa fa-check"></i>
+</h1> -->
+  <!--The content below is only a placeholder and can be replaced.-->
+
+  <p-panel >
+    <p-header>
+    <p-menubar [model]="items1" >
+    <!-- <input type="text" pInputText placeholder="Search"> -->
+    <button pButton label="Logout" icon="fa-sign-out"></button>
+    </p-menubar> 
+    </p-header>
+    <!-- Add  Add New Item To Inventory Starts -->
+    <p-dialog header="Add New Item To Inventory" [(visible)]="displayAdd" [width]="830" [responsive]="true" showEffect="fade" [modal]="true">
+    <p-growl [value]="msgs"  life="2000" ></p-growl>
+
+<form [formGroup]="insertform" (ngSubmit)="OnInsert(insertform.value)">
+    <!-- <p-panel header="Validate"> -->
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                 Name *:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="name" placeholder="Required"/>
+                </div>
+                <div class="ui-grid-col-4">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!insertform.controls['name'].valid&&insertform.controls['name'].dirty">
+                        <i class="fa fa-close"></i>
+                        Item name is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Code *:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="code" placeholder="Required"/>
+                </div>
+                <div class="ui-grid-col-4">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!insertform.controls['code'].valid&&insertform.controls['code'].dirty">
+                        <i class="fa fa-close"></i>
+                       Item Code is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Quantity *:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="quantity" placeholder="Required - Min(1)"/>
+                </div>
+                <div class="ui-grid-col-4">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!insertform.controls['quantity'].valid&&insertform.controls['quantity'].dirty">
+                        <i class="fa fa-close"></i>
+                        <span *ngIf="insertform.controls['quantity'].errors['required']">Quantity is required</span>
+                        <!-- <span *ngIf="userform.controls['password'].errors['minlength']">Must be longer than 6 characters</span> -->
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Per Unit Price *:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="unitprice" placeholder="Required - Min(1)"/>
+                </div>
+                <div class="ui-grid-col-4">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!insertform.controls['unitprice'].valid&&insertform.controls['unitprice'].dirty">
+                        <i class="fa fa-close"></i>
+                        <span *ngIf="insertform.controls['unitprice'].errors['required']">Per Unit Price is required</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Description:
+                </div>
+                <div class="ui-grid-col-6">
+                    <textarea pInputTextarea type="text" formControlName="description"></textarea>
+                </div>
+                <div class="ui-grid-col-4"></div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Category *:
+                </div>
+                <div class="ui-grid-col-6">
+                    <p-dropdown [options]="Category" formControlName="category" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-grid-col-4">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!insertform.controls['category'].valid&&insertform.controls['category'].dirty">
+                        <i class="fa fa-close"></i>
+                        Category is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2"></div>
+                <div class="ui-grid-col-6">
+                    <button pButton type="submit" label="Insert" [disabled]="!insertform.valid"></button>
+                </div>
+                <div class="ui-grid-col-4"></div>
+            </div>
+        </div>
+    <!-- </p-panel> -->
+</form>
+   </p-dialog>
+<!-- Add New Item To Inventory Ends -->
+<!-- Update Item From Inventory Starts -->
+<p-dialog header="Update Item From Inventory" [(visible)]="displayUpdate" [width]="830" [responsive]="true" showEffect="fade" [modal]="true">
+    <p-growl [value]="msgsupdate"  life="2000" ></p-growl>
+    <form [formGroup]="updateform" (ngSubmit)="OnUpdate(updateform.value)">
+    <!-- <p-panel header="Validate"> -->
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+                        <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Id *:
+                </div>
+                <div class="ui-grid-col-6">
+                    <p-dropdown [options]="ItemIds" [(ngModel)]="selectedId" (onChange)="fillUpdateControls()" formControlName="id" [autoWidth]="false"></p-dropdown>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                 Name *:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="name" placeholder="Required"/>
+                </div>
+                <div class="ui-grid-col-4">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!insertform.controls['name'].valid&&insertform.controls['name'].dirty">
+                        <i class="fa fa-close"></i>
+                        Item name is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Code *:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="code" placeholder="Required"/>
+                </div>
+                <div class="ui-grid-col-4">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!updateform.controls['code'].valid&&updateform.controls['code'].dirty">
+                        <i class="fa fa-close"></i>
+                       Item Code is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Quantity *:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="quantity" placeholder="Required - Min(1)"/>
+                </div>
+                <div class="ui-grid-col-4">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!updateform.controls['quantity'].valid&&updateform.controls['quantity'].dirty">
+                        <i class="fa fa-close"></i>
+                        <span *ngIf="updateform.controls['quantity'].errors['required']">Quantity is required</span>
+                        <!-- <span *ngIf="userform.controls['password'].errors['minlength']">Must be longer than 6 characters</span> -->
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Per Unit Price *:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="unitprice" placeholder="Required - Min(1)"/>
+                </div>
+                <div class="ui-grid-col-4">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!updateform.controls['unitprice'].valid&&updateform.controls['unitprice'].dirty">
+                        <i class="fa fa-close"></i>
+                        <span *ngIf="updateform.controls['unitprice'].errors['required']">Per Unit Price is required</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Description:
+                </div>
+                <div class="ui-grid-col-6">
+                    <textarea pInputTextarea type="text" formControlName="description"></textarea>
+                </div>
+                <div class="ui-grid-col-4"></div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Category *:
+                </div>
+                <div class="ui-grid-col-6">
+                    <p-dropdown [options]="Category" formControlName="category" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-grid-col-4">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!updateform.controls['category'].valid&&updateform.controls['category'].dirty">
+                        <i class="fa fa-close"></i>
+                        Category is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2"></div>
+                <div class="ui-grid-col-6">
+                    <button pButton type="submit" label="Update" [disabled]="!updateform.valid"></button>
+                </div>
+                <div class="ui-grid-col-4"></div>
+            </div>
+            <!-- <div style="text-align:center;margin-top:20px" *ngIf="submitted">
+                Form Submitted
+                <br>
+                {{diagnostic}}
+            </div> -->
+        </div>
+    <!-- </p-panel> -->
+</form>
+
+</p-dialog>
+<!-- Update Item From Inventory Ends -->
+<!-- Delete Item From Inventory Starts -->
+<p-dialog header="Delete Item From Inventory" [(visible)]="displayDelete" [width]="830" [height]="400" [responsive]="true" showEffect="fade" [modal]="true">
+    <p-growl [value]="msgsdelete"  life="2000" ></p-growl>
+    <form [formGroup]="deleteform" (ngSubmit)="OnDelete(deleteform.value)">
+    <!-- <p-panel header="Validate"> -->
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Id *:
+                </div>
+                <div class="ui-grid-col-6">
+                    <p-dropdown [options]="ItemIds" [(ngModel)]="selectedId"  formControlName="id" [autoWidth]="false"></p-dropdown>
+                </div>
+            </div>
+            <br><br><br><br><br><br><br><br>
+             <div class="ui-grid-row">
+                <div class="ui-grid-col-2"></div>
+                <div class="ui-grid-col-6">
+                    <button pButton type="submit" label="Delete" [disabled]="!deleteform.valid"></button>
+                </div>
+                <div class="ui-grid-col-4"></div>
+            </div>
+            
+        </div>
+    </form>
+</p-dialog>
+<!-- Delete Item From Inventory Ends -->
+<!-- Show All Items From Inventory Starts -->
+<p-dialog header="Show All Items From Inventory" [width]="1200" scrollable="true" [(visible)]="displayAll"  [responsive]="true" showEffect="fade" [modal]="true">
+      <p-dataTable  [value]="inventoryItems" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+    <p-header>All Inventory Items</p-header>
+    <p-column field="Id" [style]="{'width': '80px'}"  [filter]="true" [sortable]="true" header="Id"></p-column>
+    <p-column field="Name" [style]="{'width': '120px'}" [filter]="true" [sortable]="true"  header="Name"></p-column>
+    <p-column field="Code" [style]="{'width': '120px'}" [filter]="true" [sortable]="true" header="Code"></p-column>
+    <p-column field="Quantity" [style]="{'width': '150px'}" [filter]="true" [sortable]="true" header="Quantity"></p-column>
+    <p-column field="PerUnitPrice" [style]="{'width': '200px'}"  [filter]="true" [sortable]="true" header="PerUnitPrice"></p-column>
+    <p-column field="Category" [style]="{'width': '200px'}"  [filter]="true" [sortable]="true" header="Category"></p-column>
+    <p-column field="Description" [style]="{'width': '170px'}"  [filter]="true" [sortable]="true" header="Description"></p-column>
+    <ng-template pTemplate="paginatorLeft">
+        <button type="button" pButton icon="fa-refresh"></button>
+    </ng-template>
+    <ng-template pTemplate="paginatorRight">
+        <button type="button" pButton icon="fa-cloud-upload"></button>
+    </ng-template>
+</p-dataTable>
+</p-dialog>
+<!-- Show All Items From Inventory Ends -->
+  <!-- <button type="text" (click)="showAddDialog()" pButton icon="fa-external-link-square" label="Add"></button>
+  <button type="text" (click)="showUpdateDialog()" pButton icon="fa-external-link-square" label="Update"></button>
+  <button type="text" (click)="showDeleteDialog()" pButton icon="fa-external-link-square" label="Delete"></button>
+  <button type="text" (click)="showAllDialog()" pButton icon="fa-external-link-square" label="Show All"></button> -->
+  <!-- <div style="text-align:center;">
+  <h2>
+    {{title}}, developed in Angular 5 by DotNet Techy
+  </h2>
+  </div> -->
+<router-outlet> </router-outlet>
+  <!-- <p-dataTable [value]="inventoryItems" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+     <p-header>All Inventory Items</p-header> 
+    <p-column field="Id" header="Id"></p-column>
+    <p-column field="Name" header="Name"></p-column>
+    <p-column field="Code" header="Code"></p-column>
+    <p-column field="Quantity" header="Quantity"></p-column>
+    <p-column field="PerUnitPrice" header="PerUnitPrice"></p-column>
+    <p-column field="Category" header="Category"></p-column>
+    <p-column field="Description" header="Description"></p-column>
+    <ng-template pTemplate="paginatorLeft">
+        <button type="button" pButton icon="fa-refresh"></button>
+    </ng-template>
+    <ng-template pTemplate="paginatorRight">
+        <button type="button" pButton icon="fa-cloud-upload"></button>
+    </ng-template>
+</p-dataTable> -->
+<div style="text-align:center;">
+  <h2>
+    Please subscribe DotNet Techy YouTube Channel and comment your opinion in my videos.
+  </h2>
+</div>
+  <br><br>
+    <p-footer>
+       Copyright © 2017 <b>DotNet Techy</b> YouTube Channel-(One Place to learn everything about Angular 2,4,5 along with WEBAPI(RestFull) and Microsoft Dot Net Technology)
+    </p-footer>
+</p-panel>
+
+
+<!-- <p-menubar [model]="items1"></p-menubar> -->
+
+
+<!-- <p-menu [model]="items"></p-menu> -->
+
+  <!-- <p-accordion>
+    <p-accordionTab header="Header 1">
+       Content 1
+    </p-accordionTab>
+    <p-accordionTab header="Header 2">
+        Content 2
+    </p-accordionTab>
+    <p-accordionTab header="Header 3">
+        Content 3    
+    </p-accordionTab>
+</p-accordion>

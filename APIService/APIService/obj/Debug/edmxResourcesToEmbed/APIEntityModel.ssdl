@@ -85,17 +85,64 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="CountryID" Type="int" />
   </EntityType>
+  <EntityType Name="WebConsumerDetails">
+    <Key>
+      <PropertyRef Name="ConsumerID" />
+    </Key>
+    <Property Name="ConsumerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConsumerName" Type="varchar" MaxLength="500" />
+    <Property Name="Email" Type="varchar" MaxLength="500" />
+    <Property Name="MobileNumber" Type="bigint" />
+    <Property Name="Location" Type="varchar" MaxLength="500" />
+    <Property Name="Enabled" Type="int" />
+    <Property Name="LastOrder" Type="datetime" />
+    <Property Name="DealerId" Type="int" />
+  </EntityType>
+  <EntityType Name="WebConsumerProfile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="80" />
+    <Property Name="Name" Type="varchar" MaxLength="80" />
+    <Property Name="PhoneNo" Type="bigint" />
+    <Property Name="AlternativePhoneNo" Type="bigint" />
+    <Property Name="Sex" Type="varchar" MaxLength="50" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="Email" Type="varchar" MaxLength="80" />
+    <Property Name="Country" Type="varchar" MaxLength="80" />
+    <Property Name="State" Type="varchar" MaxLength="80" />
+    <Property Name="City" Type="varchar" MaxLength="80" />
+    <Property Name="Address" Type="varchar" MaxLength="80" />
+    <Property Name="PINCode" Type="bigint" />
+    <Property Name="LongStayYear" Type="varchar" MaxLength="80" />
+    <Property Name="LongStayMonth" Type="varchar" MaxLength="80" />
+    <Property Name="IsPermanent" Type="int" />
+    <Property Name="AdharNo" Type="bigint" />
+    <Property Name="Occupation" Type="varchar" MaxLength="80" />
+    <Property Name="EmployementNo" Type="varchar" MaxLength="80" />
+    <Property Name="Designation" Type="varchar" MaxLength="50" />
+    <Property Name="SalaryRange" Type="varchar" MaxLength="80" />
+    <Property Name="SavetoDraff" Type="varchar" MaxLength="20" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="CreateBy" Type="varchar" MaxLength="50" />
+    <Property Name="Enabled" Type="int" />
+  </EntityType>
   <EntityType Name="WebDealarDetails">
     <Key>
       <PropertyRef Name="RecordId" />
     </Key>
     <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CountryName" Type="varchar" MaxLength="200" />
-    <Property Name="StateName" Type="varchar" MaxLength="200" />
-    <Property Name="CityName" Type="varchar" MaxLength="200" />
-    <Property Name="DelarName" Type="varchar" MaxLength="200" />
+    <Property Name="CountryID" Type="int" />
+    <Property Name="CountryName" Type="varchar" MaxLength="500" />
+    <Property Name="CountryCode" Type="varchar" MaxLength="500" />
+    <Property Name="StateID" Type="int" />
+    <Property Name="StateName" Type="varchar" MaxLength="500" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="CityName" Type="varchar" MaxLength="500" />
+    <Property Name="DelarName" Type="varchar" MaxLength="500" />
     <Property Name="Enabled" Type="int" />
-    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateDate" Type="date" />
   </EntityType>
   <Association Name="FK_CityMaster_StateMaster">
     <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="0..1" />
@@ -175,6 +222,8 @@
     <EntitySet Name="CityMaster" EntityType="Self.CityMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CountryMaster" EntityType="Self.CountryMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StateMaster" EntityType="Self.StateMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WebConsumerDetails" EntityType="Self.WebConsumerDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WebConsumerProfile" EntityType="Self.WebConsumerProfile" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WebDealarDetails" EntityType="Self.WebDealarDetails" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_CityMaster_StateMaster" Association="Self.FK_CityMaster_StateMaster">
       <End Role="StateMaster" EntitySet="StateMaster" />

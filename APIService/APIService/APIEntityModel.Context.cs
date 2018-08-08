@@ -34,5 +34,7 @@ namespace APIService
         public virtual DbSet<CityMaster> CityMasters { get; set; }
         public virtual DbSet<CountryMaster> CountryMasters { get; set; }
         public virtual DbSet<StateMaster> StateMasters { get; set; }
+        public virtual DbSet<WebConsumerDetail> WebConsumerDetails { get; set; }
+        public virtual DbSet<WebConsumerProfile> WebConsumerProfiles { get; set; }
     }
 }

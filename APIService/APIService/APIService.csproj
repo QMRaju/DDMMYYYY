@@ -290,11 +290,18 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Platform.cs" />
     <Compile Include="Models\Test.cs" />
+    <Compile Include="Model\ConsumerPlatform.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="StateMaster.cs">
+      <DependentUpon>APIEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebConsumerDetail.cs">
+      <DependentUpon>APIEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebConsumerProfile.cs">
       <DependentUpon>APIEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="WebDealarDetail.cs">
@@ -381,7 +388,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

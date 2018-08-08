@@ -90,17 +90,64 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="CountryID" Type="int" />
         </EntityType>
+        <EntityType Name="WebConsumerDetails">
+          <Key>
+            <PropertyRef Name="ConsumerID" />
+          </Key>
+          <Property Name="ConsumerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConsumerName" Type="varchar" MaxLength="500" />
+          <Property Name="Email" Type="varchar" MaxLength="500" />
+          <Property Name="MobileNumber" Type="bigint" />
+          <Property Name="Location" Type="varchar" MaxLength="500" />
+          <Property Name="Enabled" Type="int" />
+          <Property Name="LastOrder" Type="datetime" />
+          <Property Name="DealerId" Type="int" />
+        </EntityType>
+        <EntityType Name="WebConsumerProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="80" />
+          <Property Name="Name" Type="varchar" MaxLength="80" />
+          <Property Name="PhoneNo" Type="bigint" />
+          <Property Name="AlternativePhoneNo" Type="bigint" />
+          <Property Name="Sex" Type="varchar" MaxLength="50" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="Email" Type="varchar" MaxLength="80" />
+          <Property Name="Country" Type="varchar" MaxLength="80" />
+          <Property Name="State" Type="varchar" MaxLength="80" />
+          <Property Name="City" Type="varchar" MaxLength="80" />
+          <Property Name="Address" Type="varchar" MaxLength="80" />
+          <Property Name="PINCode" Type="bigint" />
+          <Property Name="LongStayYear" Type="varchar" MaxLength="80" />
+          <Property Name="LongStayMonth" Type="varchar" MaxLength="80" />
+          <Property Name="IsPermanent" Type="int" />
+          <Property Name="AdharNo" Type="bigint" />
+          <Property Name="Occupation" Type="varchar" MaxLength="80" />
+          <Property Name="EmployementNo" Type="varchar" MaxLength="80" />
+          <Property Name="Designation" Type="varchar" MaxLength="50" />
+          <Property Name="SalaryRange" Type="varchar" MaxLength="80" />
+          <Property Name="SavetoDraff" Type="varchar" MaxLength="20" />
+          <Property Name="CreateDate" Type="date" />
+          <Property Name="CreateBy" Type="varchar" MaxLength="50" />
+          <Property Name="Enabled" Type="int" />
+        </EntityType>
         <EntityType Name="WebDealarDetails">
           <Key>
             <PropertyRef Name="RecordId" />
           </Key>
           <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CountryName" Type="varchar" MaxLength="200" />
-          <Property Name="StateName" Type="varchar" MaxLength="200" />
-          <Property Name="CityName" Type="varchar" MaxLength="200" />
-          <Property Name="DelarName" Type="varchar" MaxLength="200" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="CountryName" Type="varchar" MaxLength="500" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="500" />
+          <Property Name="StateID" Type="int" />
+          <Property Name="StateName" Type="varchar" MaxLength="500" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="CityName" Type="varchar" MaxLength="500" />
+          <Property Name="DelarName" Type="varchar" MaxLength="500" />
           <Property Name="Enabled" Type="int" />
-          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateDate" Type="date" />
         </EntityType>
         <Association Name="FK_CityMaster_StateMaster">
           <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="0..1" />
@@ -180,6 +227,8 @@
           <EntitySet Name="CityMaster" EntityType="Self.CityMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CountryMaster" EntityType="Self.CountryMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StateMaster" EntityType="Self.StateMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebConsumerDetails" EntityType="Self.WebConsumerDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebConsumerProfile" EntityType="Self.WebConsumerProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WebDealarDetails" EntityType="Self.WebDealarDetails" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CityMaster_StateMaster" Association="Self.FK_CityMaster_StateMaster">
             <End Role="StateMaster" EntitySet="StateMaster" />
@@ -323,18 +372,24 @@
             <End Role="StateMaster" EntitySet="StateMasters" />
             <End Role="CityMaster" EntitySet="CityMasters" />
           </AssociationSet>
+          <EntitySet Name="WebConsumerDetails" EntityType="DemoModel.WebConsumerDetail" />
+          <EntitySet Name="WebConsumerProfiles" EntityType="DemoModel.WebConsumerProfile" />
         </EntityContainer>
         <EntityType Name="WebDealarDetail">
           <Key>
             <PropertyRef Name="RecordId" />
           </Key>
           <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CountryName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="StateName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="CityName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="DelarName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CountryName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="StateName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CityName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DelarName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Enabled" Type="Int32" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Precision="0" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="CountryCode" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="StateID" Type="Int32" />
+          <Property Name="CityId" Type="Int32" />
         </EntityType>
         <EntityType Name="CityMaster">
           <Key>
@@ -374,6 +429,49 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="WebConsumerDetail">
+          <Key>
+            <PropertyRef Name="ConsumerID" />
+          </Key>
+          <Property Name="ConsumerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConsumerName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNumber" Type="Int64" />
+          <Property Name="Location" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Enabled" Type="Int32" />
+          <Property Name="LastOrder" Type="DateTime" Precision="3" />
+          <Property Name="DealerId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="WebConsumerProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNo" Type="Int64" />
+          <Property Name="AlternativePhoneNo" Type="Int64" />
+          <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="PINCode" Type="Int64" />
+          <Property Name="LongStayYear" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="LongStayMonth" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="IsPermanent" Type="Int32" />
+          <Property Name="AdharNo" Type="Int64" />
+          <Property Name="Occupation" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="EmployementNo" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SalaryRange" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="SavetoDraff" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="0" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Enabled" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -446,6 +544,10 @@
           <EntitySetMapping Name="WebDealarDetails">
             <EntityTypeMapping TypeName="DemoModel.WebDealarDetail">
               <MappingFragment StoreEntitySet="WebDealarDetails">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="Enabled" ColumnName="Enabled" />
                 <ScalarProperty Name="DelarName" ColumnName="DelarName" />
@@ -480,6 +582,51 @@
                 <ScalarProperty Name="CountryID" ColumnName="CountryID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebConsumerDetails">
+            <EntityTypeMapping TypeName="DemoModel.WebConsumerDetail">
+              <MappingFragment StoreEntitySet="WebConsumerDetails">
+                <ScalarProperty Name="DealerId" ColumnName="DealerId" />
+                <ScalarProperty Name="LastOrder" ColumnName="LastOrder" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ConsumerName" ColumnName="ConsumerName" />
+                <ScalarProperty Name="ConsumerID" ColumnName="ConsumerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebConsumerProfiles">
+            <EntityTypeMapping TypeName="DemoModel.WebConsumerProfile">
+              <MappingFragment StoreEntitySet="WebConsumerProfile">
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="SavetoDraff" ColumnName="SavetoDraff" />
+                <ScalarProperty Name="SalaryRange" ColumnName="SalaryRange" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="EmployementNo" ColumnName="EmployementNo" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="AdharNo" ColumnName="AdharNo" />
+                <ScalarProperty Name="IsPermanent" ColumnName="IsPermanent" />
+                <ScalarProperty Name="LongStayMonth" ColumnName="LongStayMonth" />
+                <ScalarProperty Name="LongStayYear" ColumnName="LongStayYear" />
+                <ScalarProperty Name="PINCode" ColumnName="PINCode" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="AlternativePhoneNo" ColumnName="AlternativePhoneNo" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -67,6 +67,10 @@
     <EntitySetMapping Name="WebDealarDetails">
       <EntityTypeMapping TypeName="DemoModel.WebDealarDetail">
         <MappingFragment StoreEntitySet="WebDealarDetails">
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="Enabled" ColumnName="Enabled" />
           <ScalarProperty Name="DelarName" ColumnName="DelarName" />
@@ -101,6 +105,51 @@
           <ScalarProperty Name="CountryID" ColumnName="CountryID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WebConsumerDetails">
+      <EntityTypeMapping TypeName="DemoModel.WebConsumerDetail">
+        <MappingFragment StoreEntitySet="WebConsumerDetails">
+          <ScalarProperty Name="DealerId" ColumnName="DealerId" />
+          <ScalarProperty Name="LastOrder" ColumnName="LastOrder" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ConsumerName" ColumnName="ConsumerName" />
+          <ScalarProperty Name="ConsumerID" ColumnName="ConsumerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WebConsumerProfiles">
+      <EntityTypeMapping TypeName="DemoModel.WebConsumerProfile">
+        <MappingFragment StoreEntitySet="WebConsumerProfile">
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="SavetoDraff" ColumnName="SavetoDraff" />
+          <ScalarProperty Name="SalaryRange" ColumnName="SalaryRange" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="EmployementNo" ColumnName="EmployementNo" />
+          <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+          <ScalarProperty Name="AdharNo" ColumnName="AdharNo" />
+          <ScalarProperty Name="IsPermanent" ColumnName="IsPermanent" />
+          <ScalarProperty Name="LongStayMonth" ColumnName="LongStayMonth" />
+          <ScalarProperty Name="LongStayYear" ColumnName="LongStayYear" />
+          <ScalarProperty Name="PINCode" ColumnName="PINCode" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="AlternativePhoneNo" ColumnName="AlternativePhoneNo" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
