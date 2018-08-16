@@ -1,47 +1,47 @@
 <form #createEmForm="ngForm" (OnSubmit)="CreateEm(ngForm)">
-        <div id="modalsignup">
-                <div class="modal-dialogsignup">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Create Emp</h4>
-                        </div>
-                        <div class="modal-body">
-            
-                            <div class="form-group">
-                                <label>Code</label>
-                                <input type="text" class="form-control" name="Code"  [(ngModel)]='code'>
-                                                                                     
-                            </div>
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" name="Name" [(ngModel)]='name' >
-                            </div>
-            
-                            <div class="form-group">
-                                <label>Gender</label>
-                              
-                                <input type="text" class="form-control" name="Gender" [(ngModel)]='gender' >
-                            </div>
-                            <div class="form-group">
-                                    <label>AnnualSalary</label>
-                                  
-                                    <input type="text" class="form-control" name="AnnualSalary" [(ngModel)] ='AnnualSalary'>
-                                </div>
-                                <div class="form-group">
-                                        <label>DateOfBirth</label>
-                                      
-                                        <input type="text" class="form-control" name="DateOfBirth" [(ngModel)]='DateOfBirth'>
-                                    </div>
-            
-                        </div>
-                        <div class="modal-footer">
-                           
-                            <input type="button" class="btn btn-info" value="CreateEm" (click)="CreateEm(createEmForm)">
-            
-            
-                        </div>
-              </div>
-            
+    <div id="modalsignup">
+        <div class="modal-dialogsignup">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Create Emp</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>Code</label>
+                        <input type="text" class="form-control" name="Code" [(ngModel)]='code'>
+
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="Name" [(ngModel)]='name'>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gender</label>
+
+                        <input type="text" class="form-control" name="Gender" [(ngModel)]='gender'>
+                    </div>
+                    <div class="form-group">
+                        <label>AnnualSalary</label>
+
+                        <input type="text" class="form-control" name="AnnualSalary" [(ngModel)]='AnnualSalary'>
+                    </div>
+                    <div class="form-group">
+                        <label>DateOfBirth</label>
+
+                        <input type="text" class="form-control" name="DateOfBirth" [(ngModel)]='DateOfBirth'>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+                    <input type="button" class="btn btn-info" value="CreateEm" (click)="CreateEm(createEmForm)">
+
+
                 </div>
             </div>
+
+        </div>
+    </div>
 </form>

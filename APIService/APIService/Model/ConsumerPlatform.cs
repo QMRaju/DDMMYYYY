@@ -7,54 +7,33 @@ namespace APIService.Model
 {
     public class ConsumerPlatform
     {
-        public int Id_ { get; set; }
-    public string Title_ { get; set; }
-        public string Name_ { get; set; }
-        public long PhoneNo_ { get; set; }
-        public long AlternativePhoneNo_ { get; set; }
-        public string Sex_ { get; set; }
-        public DateTime DOB_ { get; set; }
-        public string Email_ { get; set; }
-        public string Country_ { get; set; }
-        public string State_ { get; set; }
-        public string City_ { get; set; }
-        public string Address_ { get; set; }
-        public long PINCode_ { get; set; }
-        public string LongStayYear_ { get; set; }
-        public string LongStayMonth_ { get; set; }
-        public int IsPermanent_ { get; set; }
-        public long AdharNo_ { get; set; }
-        public string Occupation_ { get; set; }
-        public string EmployementNo_ { get; set; }
-        public string Designation_ { get; set; }
-        public string SalaryRange_ { get; set; }
-        public string SavetoDraff_ { get; set; }
-        public DateTime CreateDate_ { get; set; }
-        public string CreateBy_ { get; set; }
-        public string Enabled_ { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Name { get; set; }
+        public long PhoneNo { get; set; }
+        public long AlternativePhoneNo { get; set; }
+        public string Sex { get; set; }
+        public DateTime DOB { get; set; }
+        public string Email { get; set; }
+        public string Country { get; set; }
+        public string State { get; set; }
+        public string City { get; set; }
+        public string Address { get; set; }
+        public long PINCode { get; set; }
+        public string LongStayYear { get; set; }
+        public string LongStayMonth { get; set; }
+        public int IsPermanent { get; set; }
+        public long AdharNo { get; set; }
+        public string Occupation { get; set; }
+        public string EmployementNo { get; set; }
+        public string Designation { get; set; }
+        public string SalaryRange { get; set; }
+        public string SavetoDraff { get; set; }
+        public DateTime CreateDate { get; set; }
+        public string CreateBy { get; set; }
+        public string Enabled { get; set; }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+ 
 
     }
 }

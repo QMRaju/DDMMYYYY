@@ -259,7 +259,7 @@ G:\ANGULAR5\APIService\APIService\bin\Microsoft.AI.DependencyCollector.xml
 G:\ANGULAR5\APIService\APIService\bin\Microsoft.AI.WindowsServer.xml
 G:\ANGULAR5\APIService\APIService\bin\Microsoft.AI.Web.xml
 G:\ANGULAR5\APIService\APIService\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+G:\ANGULAR5\APIService\APIService\obj\Debug\APIService.csprojResolveAssemblyReference.cache
 G:\ANGULAR5\APIService\APIService\obj\Debug\APIService.csproj.CoreCompileInputs.cache
 G:\ANGULAR5\APIService\APIService\obj\Debug\APIService.dll
 G:\ANGULAR5\APIService\APIService\obj\Debug\APIService.pdb
-G:\ANGULAR5\APIService\APIService\obj\Debug\APIService.csprojResolveAssemblyReference.cache

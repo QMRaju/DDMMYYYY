@@ -1,513 +1,336 @@
-<form style="  font-family: Calibri; border-color: red ">
-    <h5>#new</h5>
-    <form [formGroup]="insertform" (ngSubmit)="OnInsert(insertform.value)">
-        <div> 
-            <Table>
-                <tr>
-                    <td style="text-align: right">
-                        <label>Title : </label>
-                    </td>
-                    <td style="text-align: left">
-                        <select formControlName="title" >
-                            <option value="Mr." selected>Mr.</option>
-                            <option value="Miss">Miss</option>
-                            <option value="Mrs.">Mrs.</option>
-                            <option value="Sri">Sri</option>
-                        </select>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td style="text-align: right">
-                        <label>Name : </label>
-                    </td>
-                    <td style="text-align: left">
-                        <input type="text" formControlName="name"  placeholder="Enter the name">
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td style="text-align: right">
-                        <label>Phone Number : </label>
-                    </td>
-                    <td style="text-align: left">
-                        <input type="tel" formControlName="phone"  placeholder="Enter phone number">
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td style="text-align: right">
-                        <label>Alternative Phone Number : </label>
-                    </td>
-                    <td style="text-align: left">
-                        <input type="tel" formControlName="alterphone"  placeholder="Enter alternative phone number">
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td style="text-align: right">
-                        <label>Sex : </label>
-                    </td>
-                    <td style="text-align: left">
-                        <select formControlName="sex" >
-                            <option value="male." selected>Male</option>
-                            <option value="female">Female</option>
-                            <option value="other.">Other</option>
-                        </select>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td style="text-align: right">
-                        <label>Date of Birth : </label>
-                    </td>
-                    <td style="text-align: left">
-                        <input type="date" formControlName="dob"  placeholder="pick your date of birth">
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td style="text-align: right">
-                        <label>Email ID : </label>
-                    </td>
-                    <td style="text-align: left">
-                        <input type="email" formControlName="email"  placeholder="enter the email id">
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td style="text-align: right">
-                        <label>Select : </label>
-                    </td>
-                    <td style="text-align: left">
-                        <select (change)="onChange2($event)">
-                            <option>--Select--</option>
-                            <option *ngFor="let Con of country" [value]="Con.ID" formControlName="country" >
-                                {{Con.Name}}
-                            </option>
-                        </select>
+<div class="container">
+    <form style="  font-family: Calibri; border-color: red ">
+
+        <h4 class="modal-title"> {{date}} </h4>
+        <form>
+
+            <input type="button" class="btn btn-info" value="CreateEm" (click)="Test()">
+            <div>
+                <Table>
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>Title : </label>
+                            </td>
+                            <td style="text-align: left">
+                                <select >
+                                    <option class="selectpicker" >--Select--</option>
+                                    <option *ngFor="let tt of titlelist" [value]="tt.id" class="form-control">
+                                        {{tt.Title}}
+                                    </option>
+                                </select>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </div>
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>Name : </label>
+                            </td>
+                            <td style="text-align: left">
+                                <input type="text" class="form-control" name="Name" [(ngModel)]='name' placeholder="Enter the name" minlength="4" #nameControl="ngModel"
+                                    required>
+                                <div *ngIf="nameControl.errors && (nameControl.dirty || nameControl.touched )" class="alert alert-danger">
+                                    <div [hidden]="!nameControl.errors.required">
+                                       Name is mandatory.
+                                    </div>
+                                    <div [hidden]="!nameControl.errors.minlength">
+                                     Name should be greater then 4 char.
+                                     </div>
+                                     <div [hidden]="!nameControl.errors.maxlength">
+                                       Name should less then 30 char.
+                                     </div>
+
+                                </div>
+
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </div>
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>Phone Number : </label>
+                            </td>
+                            <td style="text-align: left">
+                                <input type="number" class="form-control" name="Phone" [(ngModel)]='phone' placeholder="Enter phone number" minlength="10" maxlength="10"  #phoneControl="ngModel" required>
+                                <div *ngIf="phoneControl.errors && (phoneControl.dirty || phoneControl.touched )" class="alert alert-danger">
+                                        <div>
+                                            Phone is mandatory. | it's not a valied phone number 
+                                        </div>
+    
+                                    </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </div>
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>Alternative Phone Number : </label>
+                            </td>
+                            <td style="text-align: left">
+                                <input type="number" class="form-control" name="AlterPhone" [(ngModel)]='alterphonr' minlength="10" maxlength="10"  placeholder="Enter alternative phone number"
+                                    #alternativePhoneControl="ngModel">
+                                    <div *ngIf="alternativePhoneControl.errors " class="alert alert-danger">
+                                        <div [hidden]="!alternativePhoneControl.errors.minlength">
+                                            it's not a valied phone number 
+                                        </div>
+                                      
+    
+                                    </div>
+                                 
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </div>
+
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>Sex : </label>
+                            </td>
+                            <td style="text-align: left">
+                                <select>
+                                    <option>--Select--</option>
+                                    <option *ngFor="let se of sexList" [value]="se.id" class="form-control">
+                                        {{se.Sex}}
+                                    </option>
+                                </select>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </div>
+
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>Date of Birth : </label>
+                            </td>
+                            <td style="text-align: left">
+                                <input type="date" class="form-control" name="Dob" [(ngModel)]='dob' placeholder="pick your date of birth" #DOBControl="ngModel">
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </div>
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>Email ID : </label>
+                            </td>
+                            <td style="text-align: left">
+                                <input type="email" class="form-control" name="Email" [(ngModel)]='email' placeholder="enter the email id" #emailControl="ngModel">
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </div>
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>Select : </label>
+                            </td>
+                            <td style="text-align: left">
+                                <select (change)="onChange2($event)">
+                                    <option>--Select--</option>
+                                    <option *ngFor="let Con of country" class="form-control" [value]="Con.ID">
+                                        {{Con.Name}}
+                                    </option>
+                                </select>
+                            </td>
+                            <td>
+                                <select (change)="onChange($event)">
+                                    <option>--Select--</option>
+                                    <option *ngFor="let st of state" class="form-control" [value]="st.ID" readonly="true">
+                                        {{st.Name}}
+                                    </option>
+                                </select>
+                            </td>
+                            <td>
+                                <select (change)="onChangecity($event)">
+                                    <option value="0">--Select--</option>
+                                    <option *ngFor="let ct of city" class="form-control" [value]="ct.ID">
+                                        {{ct.Name}}
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                    </div>
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>Address : </label>
+                            </td>
+                            <td style="text-align: left">
+                                <input type="text" class="form-control" name="Address" [(ngModel)]='address' placeholder="enter local address" #addressControl="ngModel">
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </div>
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>Pin Code : </label>
+                            </td>
+                            <td style="text-align: left">
+                                <input type="text" class="form-control" name="PinCode" [(ngModel)]='pincode' placeholder="Enter pin code" #pincodeControl="ngModel">
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </div>
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>How long you stay here : </label>
+                            </td>
+                            <td style="text-align: left">
+                                <select>
+                                    <option>--Select--</option>
+                                    <option *ngFor="let how of Howlongyearlist" class="form-control" [value]="how.id">
+                                        {{how.Year}}
+                                    </option>
+                                </select>
+                            </td>
+
+                            <td style="text-align: left">
+                                <select>
+                                    <option>--Select--</option>
+                                    <option *ngFor="let mm of howlongmonthlist" class="form-control" [value]="mm.id">
+                                        {{mm.Month}}
+                                    </option>
+                                </select>
+                            </td>
+
+                            <td></td>
+                        </tr>
+                    </div>
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>Is your Permanent address : </label>
+                            </td>
+                            <td style="text-align: left">
+                                <input type="radio" class="form-control" value="male" name="gender" ngModel> Yes
+                                <input type="radio" class="form-control" value="female" name="gender" ngModel> No
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </div>
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>Aadhar Number : </label>
+                            </td>
+                            <td style="text-align: left">
+                                <input type="number" class="form-control" name="Aadhar" [(ngModel)]="aadhar" placeholder="enter aadhar number" #aadharControl="ngModel">
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </div>
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>Occupation : </label>
+                            </td>
+
+                            <td style="text-align: left">
+                                <select>
+                                    <option>--Select--</option>
+                                    <option *ngFor="let oo of Occupationlist" class="form-control" [value]="oo.id">
+                                        {{oo.Occupation}}
+                                    </option>
+                                </select>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </div>
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>Employement No : </label>
+                            </td>
+                            <td style="text-align: left">
+                                <input type="text" class="form-control" name="ENo" [(ngModel)]='eno' placeholder="enter employement Number" #enoControl="ngModel">
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </div>
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>Designation : </label>
+                            </td>
+
+                            <td style="text-align: left">
+                                <select>
+                                    <option>--Select--</option>
+                                    <option *ngFor="let de of DesignationList" class="form-control" [value]="de.id">
+                                        {{de.Designation}}
+                                    </option>
+                                </select>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </div>
+                    <div class="form-group">
+                        <tr>
+                            <td style="text-align: right">
+                                <label>Salary Range : </label>
+                            </td>
+                            <td style="text-align: left">
+                                <select>
+                                    <option>--Select--</option>
+                                    <option *ngFor="let sl of SalaryLiat" class="form-control" [value]="sl.id">
+                                        {{sl.SalaryRange}}
+                                    </option>
+                                </select>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </div>
+
+                    <tr>
                         <td>
-                            <select (change)="onChange($event)">
-                                <option>--Select--</option>
-                                <option *ngFor="let st of state" [value]="st.ID" readonly="true" formControlName="state" >
-                                    {{st.Name}}
-                                </option>
-                            </select>
                         </td>
                         <td>
-                            <select (change)="onChangecity($event)">
-                                <option value="0">--Select--</option>
-                                <option *ngFor="let ct of city" [value]="ct.ID" formControlName="city" >
-                                    {{ct.Name}}
-                                </option>
-                            </select>
-                        </td>
-                </tr>
-                <tr>
-                    <td style="text-align: right">
-                        <label>Address : </label>
-                    </td>
-                    <td style="text-align: left">
-                        <input type="text" formControlName="address"  placeholder="enter local address">
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td style="text-align: right">
-                        <label>Pin Code : </label>
-                    </td>
-                    <td style="text-align: left">
-                        <input type="text" formControlName="pin"  placeholder="Enter pin code">
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td style="text-align: right">
-                        <label>How long you stay here : </label>
-                    </td>
-                    <td style="text-align: left">
-                        <select formControlName="hlyrsY" >
-                            <option value="1." selected>1 year</option>
-                            <option value="2">2 years</option>
-                            <option value="3.">3 years</option>
-                            <option value="4." selected>4 year</option>
-                            <option value="5">5 years</option>
-                            <option value="6.">6 years</option>
-                            <option value="7." selected>7 year</option>
-                            <option value="8">8 years</option>
-                            <option value="more">more then 8 years</option>
-                        </select>
-                        <td>
-                            <select formControlName="hlyrsM" >
-                                <option value="1." selected>1 month</option>
-                                <option value="2">2 months</option>
-                                <option value="3.">3 months</option>
-                                <option value="4." selected>4 months</option>
-                                <option value="5">5 months</option>
-                                <option value="6.">6 months</option>
-                                <option value="7." selected>7 months</option>
-                                <option value="8">8 months</option>
-                                <option value="more">more then 8 months</option>
-                            </select>
+
                         </td>
                         <td></td>
-                </tr>
-                <tr>
-                        <td style="text-align: right">
-                            <label>Is your Permanent address : </label>
+                        <td>
+                            <input type="button" class="form-control" value="SaveToDraff">
+                            <input type="button" class="form-control" value="Save DB">
+
                         </td>
-                        <td style="text-align: left">
-                                <input type="radio" formControlName="yesparmament"   value="male" name="gender" ngModel> Yes 
-                                <input type="radio" formControlName="noparmament"  value="female" name="gender" ngModel> No
+
+                    </tr>
+                    <tr>
+
+                        <td>
+
                         </td>
-                        <td></td>
+                        <td>
+
+                        </td>
                         <td></td>
                     </tr>
-                <tr>
-                    <td style="text-align: right">
-                        <label>Aadhar Number : </label>
-                    </td>
-                    <td style="text-align: left">
-                        <input type="number" formControlName="aadhar"  placeholder="enter aadhar number">
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td style="text-align: right">
-                        <label>Occupation : </label>
-                    </td>
-                    <td style="text-align: left">
-                        <select formControlName="occupation" >
-                            <option value="Self." selected>Self</option>
-                            <option value="Business">Business</option>
-                            <option value="Private">Private</option>
-                            <option value="Goverment">Goverment</option>
-                        </select>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td style="text-align: right">
-                        <label>Employement No : </label>
-                    </td>
-                    <td style="text-align: left">
-                        <input type="text" formControlName="employmentNo"   placeholder="enter employement Number">
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td style="text-align: right">
-                        <label>Designation : </label>
-                    </td>
-                    <td style="text-align: left">
-                        <select formControlName="designation" >
-                            <option value="Programmer." selected>Programmer</option>
-                            <option value="Engineer">Engineer</option>
-                            <option value="Model">Model</option>
-                            <option value="Actress">Actress</option>
-                            <option value="Docter">Docter</option>
-                            <option value="Other">Other</option>
-    
-                        </select>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td style="text-align: right">
-                        <label>Salary Range : </label>
-                    </td>
-                    <td style="text-align: left">
-                        <select formControlName="salary" >
-                            <option value="<2L>." selected>
-                                < 2 LPA</option>
-                                    <option value="<5L>">
-                                        < 5 LPA</option>
-                                            <option value="<8L>">
-                                                < 8 LPA</option>
-                                                    <option value="<10L>">
-                                                        < 10 LPA</option>
-                        </select>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-    
-                    </td>
-                    <td></td>
-                    <td>
-                        <input type="button" value="SaveToDraff">
-                        <input type="button" value="Save DB">
-                        <button pButton type="submit" 
-                                label="Insert" 
-                                [disabled]="!insertform.valid"
-                                ></button>
-                    </td>
-                </tr>
-            </Table>
-        </div>
+                </Table>
+            </div>
+
+        </form>
     </form>
- 
-
-<div *ngIf="rnd">
-    <h6 style="text-align: left; font-family: Calibri">Location:{{PathName}}</h6>
-
-    <h5>Please fill the details of Distributer/Delear</h5>
-
-    <div>
-        <label>Select Country Name : </label>
-        <select (change)="onChange2($event)">
-            <option>--Select--</option>
-            <option *ngFor="let Con of country" [value]="Con.ID">
-                {{Con.Name}}
-            </option>
-        </select>
-    </div>
-
-
-    <div>
-        <label>Select State Name : </label>
-        <select (change)="onChange($event)">
-            <option>--Select--</option>
-            <option *ngFor="let st of state" [value]="st.ID" readonly="true">
-                {{st.Name}}
-            </option>
-        </select>
-    </div>
-
-    <div>
-        <label>Select City Name : </label>
-        <select (change)="onChangecity($event)">
-            <option value="0">--Select--</option>
-            <option *ngFor="let ct of city" [value]="ct.ID">
-                {{ct.Name}}
-            </option>
-        </select>
-    </div>
-
-    <div *ngIf="divShowFlag">
-        <a>Please select your Delear Name with Location detail </a>
-
-        <table border="1">
-
-            <thead>
-                <tr>
-                    <th>
-                        <input type="checkbox">
-                    </th>
-                    <th>Delear Id</th>
-                    <th>CountryName</th>
-                    <th>StateName</th>
-                    <th>CityName</th>
-                    <th>DelarName</th>
-                    <th>Enabled</th>
-                    <th>CreateDate</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <ng-container *ngFor="let deal of mydelear;">
-                    <tr>
-                        <input type="checkbox"
-                         name="options"
-                          value="{{deal.RecordId}}" 
-                          [checked]="mydelear.indexOf(deal) >= 1"
-                           (change)="updateCheckedOptions(deal, $event)"
-                        />
-
-                        <td> {{ deal.RecordId}}</td>
-                        <td> {{ deal.CountryName}}</td>
-                        <td> {{ deal.StateName}}</td>
-                        <td> {{ deal.CityName}}</td>
-                        <td> {{ deal.DelarName}}</td>
-                        <td> {{ deal.Enabled}}</td>
-                        <td> {{ deal.CreateDate}}</td>
-
-                    </tr>
-
-                </ng-container>
-
-            </tbody>
-        </table>
-
-    </div>
-    <div>
-
-
-        <h5>Please fill the details of Consumer/yourself</h5>
-
-
-        <div>
-            <div style="text-align: left">
-                <label> select one and press Load button </label>
-                <br>
-                <form action="">
-                    <input type="radio" name="gender" value="male"
-                    (click)= "countAction()"> found {{counsumerCount}} consumers for Shai Agency - Ghaziabad.
-                    <br>
-                    <input type="radio" name="gender" value="female"
-                    (click)="IDaction()"> enter the consumerID.
-                    <br>
-                    <input type="radio" name="gender" value="other"
-                     (click)= "Newaction()"> appy for new consumer connection.
-                </form>
-
-                <input type="button" name="Load" value="Load"  >
-            </div>
-
-
-
-        </div>
-    </div>
-    <div *ngIf="Gridall">
-            <table border="1">
-
-                <thead>
-                    <tr>
-                        <th>
-                            <input type="checkbox">
-                        </th>
-                        <th>Consumer ID</th>
-                        <th>ConsumerName</th>
-                        <th>Email</th>
-                        <th>MobileNumber</th>
-                        <th>Location</th>
-                        <th>Enabled</th>
-                        <th>LastOrder</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <ng-container *ngFor="let cs of myconsumer;">
-                        <tr>
-                            <input type="checkbox">
-                            <td> {{ cs.ConsumerID}}</td>
-                            <td> {{ cs.ConsumerName}}</td>
-                            <td> {{ cs.Email}}</td>
-                            <td> {{ cs.MobileNumber}}</td>
-                            <td> {{ cs.Location}}</td>
-                            <td> {{ cs.Enabled}}</td>
-                            <td> {{ cs.LastOrder}}</td>
-
-                        </tr>
-
-                    </ng-container>
-
-                </tbody>
-
-            </table>
-        </div>
-     
-        <div  *ngIf="divConsumerIdFlag" >
-            <label> Enter Consumer ID : </label>
-            <div>
-                <input type="text" name="consumerID" placeholder="Please enter the Consumer number">
-                <input type="button" name="Search" value="Search" (click)="FetchConsumerDetails()">
-                <br>
-
-            </div>
-            <div>
-                <table border="1">
-
-                    <thead>
-                        <tr>
-                            <th>
-                                <input type="checkbox">
-                            </th>
-                            <th>Consumer ID</th>
-                            <th>ConsumerName</th>
-                            <th>Email</th>
-                            <th>MobileNumber</th>
-                            <th>Location</th>
-                            <th>Enabled</th>
-                            <th>LastOrder</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <ng-container *ngFor="let cs of myconsumer;">
-                            <tr>
-                                <input type="checkbox">
-                                <td> {{ cs.ConsumerID}}</td>
-                                <td> {{ cs.ConsumerName}}</td>
-                                <td> {{ cs.Email}}</td>
-                                <td> {{ cs.MobileNumber}}</td>
-                                <td> {{ cs.Location}}</td>
-                                <td> {{ cs.Enabled}}</td>
-                                <td> {{ cs.LastOrder}}</td>
-                                <td>  
-                                    <input type="button" value="Edit">
-                                    <input type="button" value="Delete">
-                                </td>
-
-                            </tr>
-
-                        </ng-container>
-
-                    </tbody>
-
-                </table>
-            </div>
-        </div>
-        <div *ngIf="mew">
-        <div>
-            <label> Fill Consumer Details : </label>
-
-        </div>
-        <div>
-            <div>
-                <label>Consumer Name : </label>
-                <input type="text" placeholder="Enter Consumer Name">
-            </div>
-
-            <div>
-                <label>Consumer Email : </label>
-                <input type="email" placeholder="Enter Consumer Email">
-            </div>
-
-            <div>
-                <label>Consumer Mobile : </label>
-                <input type="text" placeholder="Enter Consumer MobileNumber">
-            </div>
-
-            <div>
-                <label>Consumer Location : </label>
-                <select>
-                    <option value="0">--Select--</option>
-                    <option id="ct.ID" *ngFor="let ct of city" value={{ct.Name}}>
-                        {{ct.Name}}
-                    </option>
-                </select>
-            </div>
-
-            <div>
-                <label>Consumer ID : </label>
-                <label> ID : 15002 </label>
-            </div>
-
-            <div>
-                <label>Last Order : </label>
-                <label> 2018-07-27 11:31:25.350 </label>
-            </div>
-        </div>
-     
-    </div>
 </div>
-</form>

@@ -20,6 +20,9 @@ export class CreateEmComponent implements OnInit{
 
     employee: IEmployee[];
     errorMessage:any;
+    codeVal: string;
+    Code:string;
+
     ngOnInit(){}
 
     constructor(private _employeeService:EmployeeService, private _router:Router, private _appComponent:AppComponent)
@@ -28,6 +31,7 @@ export class CreateEmComponent implements OnInit{
 
     }
     CreateEm(employeeForm: NgForm):void{
+        this.codeVal= this.codeVal
        this._employeeService.CreateEm(employeeForm.value)
        .subscribe((data) => {
         this._router.navigate(['../home/updateEm']);

@@ -230,23 +230,23 @@ namespace APIService.Controllers
         }
 
         [Route("SaveConsumerProfile")]
-        [HttpGet]
-        public IHttpActionResult Save(ConsumerPlatform cP)
+        [HttpPost]
+        public IHttpActionResult Save(WebConsumerProfile cP)
         {
             try
             {
                 using (var db = new DemoEntities())
                 {
-                    db.Entry(cP).State = cP.Id_== 0 ? EntityState.Added : EntityState.Modified;
+                    db.WebConsumerProfiles.Add(cP);
                     db.SaveChanges();
                 }
                 return Ok();
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
                 throw;
+                e.Message.ToString();
             }
 
 
